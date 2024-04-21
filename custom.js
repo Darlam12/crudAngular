@@ -10,7 +10,7 @@
 
 
 		.controller("listaCadastroCtrl", function ($scope,$rootScope, $http, uppercaseFilter) {
-			$scope.app = "Cadastro";
+			$scope.app = "Formulario";
 
 			$rootScope.contatos = [
 				/*{nome: "Ana", telefone: "9999-8888", data: new Date()},
