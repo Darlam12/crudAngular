@@ -12,21 +12,29 @@
 </head>
 <body ng-controller="listaCadastroCtrl">
 
-  <div class="container">
-
 	<div class="jumbotron">
+		<div style="background: #cccc; padding-top: 10px;padding-bottom: 5px;">
 		<h3>{{app}}</h3>
-
+        </div>
 		
         <div class="row" style="padding-top: 15px;">
 		<form name="contatoForm">
 
-			<div class="col-md-6">
-			<input class="form-control" type="text" ng-model="contato.nome" name="nome" placeholder="Nome" ng-required="true" ng-minlength="1"/>
+			<div class="col-md-4">
+				<span>Nome:</span>
+			<input class="form-control" type="text" ng-model="contato.nome"  placeholder="Nome" ng-required="true" ng-minlength="1"/>
 			</div>
 
-            <div class="col-md-6">
-			<input class="form-control" type="text" ng-model="contato.telefone" name="telefone" placeholder="Telefone" ng-required="true" ng-minlength="1" />
+            <div class="col-md-4">
+            	<span>Telefone:</span>
+			<input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" ng-required="true" ng-minlength="1" />
+			</div>
+
+			<div class="col-md-4">
+		    <span>Sexo:</span>
+			<select style="padding-top:0px" class="form-control" ng-model="contato.sexo" ng-required="true"  ng-options="sexo.descricao for sexo in listSexo | orderBy:'descricao'">
+				<option value="">-</option>
+			</select>
 			</div>
 
 		</form>
@@ -36,7 +44,7 @@
 
 			<div class="col-md-8"></div>
 			<div class="col-md-4">
-			<input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando?"/>
+			<input ng-if="contatos.length > 0" class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando?"/>
 			</div>
 		<table ng-show="contatos.length > 0" class="table table-success table-striped">
 			<tr>
@@ -50,7 +58,7 @@
 				<td><input type="checkbox" ng-model="contato.selecionado"/></td>
 				<td>{{contato.nome}}</td>
 				<td>{{contato.telefone}}</td>
-				<!--<td>{{contato.operadora.nome | lowercase}}</td>-->
+				<td>{{contato.sexo.descricao}}</td>
 				<td>{{contato.data | date:'dd/MM/yyyy'}}</td>
 			</tr>
 		</table>
@@ -67,6 +75,9 @@
 		<button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-if="isContatoSelecionado(contatos)">Apagar</button>
 		</div>
 
+
+		
+
 	</div>
 	<div ng-include="'footer.html'"></div>
 
@@ -76,11 +87,8 @@
 </div>
 
 
-
-
 </div>
 
-</div>
 
 </body>
 
