@@ -1,0 +1,65 @@
+<html ng-app="listaCadastro">
+<head>
+	<meta charset="UTF-8">
+	<title>Cadastro</title>
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<script src="lib/angular/angular.js"></script>
+	<script src="lib/angular/angular-messages.js"></script>
+
+</head>
+<body ng-controller="listaCadastroCtrl">
+
+<div class="row">
+
+	<div class="jumbotron">
+		<h3>{{app}}</h3>
+		<input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando?"/>
+		
+		<table ng-show="contatos.length > 0" class="table table-striped">
+			<tr>
+				<th></th>
+				<th><a href="" ng-click="ordenarPor('nome')">Nome</a></th>
+				<th><a href="" ng-click="ordenarPor('telefone')">Telefone</a></th>
+				<!--<th>Operadora</th>-->
+				<th>Data</th>
+			</tr>
+			<tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos | filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao">
+				<td><input type="checkbox" ng-model="contato.selecionado"/></td>
+				<td>{{contato.nome}}-{{contato.selecionado}}</td>
+				<td>{{contato.telefone}}</td>
+				<!--<td>{{contato.operadora.nome | lowercase}}</td>-->
+				<td>{{contato.data | date:'dd/MM/yyyy'}}</td>
+			</tr>
+		</table>
+
+		<hr/>
+		<form name="contatoForm">
+			<input class="form-control" type="text" ng-model="contato.nome" name="nome" placeholder="Nome" ng-required="true" ng-minlength="1"/>
+			<input class="form-control" type="text" ng-model="contato.telefone" name="telefone" placeholder="Telefone" ng-required="true" ng-minlength="1" />
+		</form>
+
+
+		<button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar Contato</button>
+		<button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-if="isContatoSelecionado(contatos)">Apagar Contatos</button>
+
+	</div>
+	<div ng-include="'footer.html'"></div>
+
+</div>
+
+
+</div>
+
+
+
+
+</div>
+
+</body>
+
+
+<script src="custom.js"></script>
+</html>
+
