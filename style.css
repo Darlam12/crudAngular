@@ -1,12 +1,12 @@
 .jumbotron {
-	width: 600px;
+	width: 768px;
 	text-align: center;
-	margin-top: 20px;
+	margin-top: 30px;
 	margin-left: auto;
 	margin-right: auto;
 }
 h3 {
-	margin-bottom: 30px;
+	margin-top: 0px;
 }
 .table {
 	margin-top: 20px;
@@ -34,7 +34,7 @@ hr {
 
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 768px) {
     .jumbotron{
         width: 100%;
     }
