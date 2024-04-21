@@ -4,6 +4,7 @@
 	<title>Cadastro</title>
 	<link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<script src="lib/angular/angular.js"></script>
 	<script src="lib/angular/angular-messages.js"></script>
@@ -11,13 +12,33 @@
 </head>
 <body ng-controller="listaCadastroCtrl">
 
-<div class="row">
+  <div class="container">
 
 	<div class="jumbotron">
 		<h3>{{app}}</h3>
-		<input ng-show="contatos.length > 0" class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando?"/>
+
 		
-		<table ng-show="contatos.length > 0" class="table table-striped">
+        <div class="row" style="padding-top: 15px;">
+		<form name="contatoForm">
+
+			<div class="col-md-6">
+			<input class="form-control" type="text" ng-model="contato.nome" name="nome" placeholder="Nome" ng-required="true" ng-minlength="1"/>
+			</div>
+
+            <div class="col-md-6">
+			<input class="form-control" type="text" ng-model="contato.telefone" name="telefone" placeholder="Telefone" ng-required="true" ng-minlength="1" />
+			</div>
+
+		</form>
+		</div>
+
+		<div class="row" style="padding-top: 30px;">
+
+			<div class="col-md-8"></div>
+			<div class="col-md-4">
+			<input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando?"/>
+			</div>
+		<table ng-show="contatos.length > 0" class="table table-success table-striped">
 			<tr>
 				<th></th>
 				<th><a href="" ng-click="ordenarPor('nome')">Nome</a></th>
@@ -35,14 +56,16 @@
 		</table>
 
 		<hr/>
-		<form name="contatoForm">
-			<input class="form-control" type="text" ng-model="contato.nome" name="nome" placeholder="Nome" ng-required="true" ng-minlength="1"/>
-			<input class="form-control" type="text" ng-model="contato.telefone" name="telefone" placeholder="Telefone" ng-required="true" ng-minlength="1" />
-		</form>
+		
+        
+        <div class="col-md-3" style="padding-top:20px">
+		<button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar</button>
 
+		</div>
 
-		<button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar Contato</button>
-		<button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-if="isContatoSelecionado(contatos)">Apagar Contatos</button>
+		<div class="col-md-3" style="padding-top:20px">
+		<button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-if="isContatoSelecionado(contatos)">Apagar</button>
+		</div>
 
 	</div>
 	<div ng-include="'footer.html'"></div>
@@ -54,6 +77,8 @@
 
 
 
+
+</div>
 
 </div>
 
