@@ -15,7 +15,7 @@
 
 	<div class="jumbotron">
 		<h3>{{app}}</h3>
-		<input ng-if="contatos.length > 0" class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando?"/>
+		<input ng-show="contatos.length > 0" class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando?"/>
 		
 		<table ng-show="contatos.length > 0" class="table table-striped">
 			<tr>
